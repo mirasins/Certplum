@@ -1,0 +1,32 @@
+# Propuesta. No instalar ni activar sin autorización del propietario del servidor.
+[Unit]
+Description=Certplum clinical PDF service
+After=network.target
+
+[Service]
+Type=simple
+User=certplum
+Group=certplum
+WorkingDirectory=/var/lib/certplum
+ExecStart=/usr/bin/certplum serve -config /etc/certplum/config.json
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=45
+UMask=0077
+LimitCORE=0
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/certplum
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

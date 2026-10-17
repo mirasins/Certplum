@@ -1,0 +1,21 @@
+{
+  "listen": "127.0.0.1:18765",
+  "origin": "https://certplum.example.org",
+  "data_dir": "/var/lib/certplum",
+  "idle_minutes": 5,
+  "tsa_url": "",
+  "medplum_url": "",
+  "document": {
+    "city": "CIUDAD-DE-EJEMPLO",
+    "professional": {
+      "name": "Profesional de Ejemplo",
+      "rut": "12.345.678-5",
+      "profession": "Profesión de ejemplo",
+      "registration": "REGISTRO-DE-EJEMPLO",
+      "contact": ""
+    },
+    "logo_path": "",
+    "signature_image_path": "",
+    "certificate_closing": "Se extiende el presente certificado a petición del interesado para los fines que estime convenientes."
+  }
+}

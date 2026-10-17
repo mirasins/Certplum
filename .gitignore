@@ -1,0 +1,59 @@
+# Datos de pacientes y documentos clínicos reales
+datos/
+data/
+pacientes/
+exports/
+salida/
+output/
+*.pdf
+*.docx
+*.xlsx
+*.csv
+
+# Claves, certificados y credenciales
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+secrets/
+credentials*.json
+
+# Configuración local real
+config.local.*
+*.local.json
+settings.local.*
+
+# Dependencias y artefactos
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+
+# Herramientas locales, bases y respaldos
+.tools/
+.local/
+*.db
+*.db-*
+*.sqlite*
+*.backup
+*.exe
+coverage.out
+
+# Copia comunitaria con repositorio e historial independientes
+community/

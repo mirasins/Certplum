@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Certplum</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><header><a class="brand" href="/">CP <span>Certplum<small>Consulta privada</small></span></a><div class="header-actions"><span id="state" class="badge">Bloqueado</span><button id="lock" class="secondary" hidden>Bloquear</button></div></header>
+<main><p id="message" role="status" aria-live="polite"></p>
+<section id="login-panel" class="card login"><div class="eyebrow">ESPACIO PERSONAL</div><h1>Tu consulta, bajo llave.</h1><p class="muted">Desbloquea para emitir y consultar tus documentos.</p><form id="login-form">
+<label>Contraseña<input name="password" type="password" autocomplete="current-password" required maxlength="1024"></label>
+<label>Frase de desbloqueo<input name="phrase" type="password" autocomplete="off" required maxlength="2048"></label>
+<label>Código de tu autenticador<input name="totp" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required placeholder="000000"></label>
+<button type="submit">Desbloquear consulta</button></form><p class="footnote">La frase de desbloqueo protege los datos y la clave de firma. No se guarda en disco.</p></section>
+<div id="workspace" hidden><div class="intro"><div><div class="eyebrow">DOCUMENTACIÓN</div><h1>Un nuevo documento.</h1><p class="muted">Completa, revisa y emite con tu firma electrónica simple.</p></div><nav aria-label="Secciones"><button data-tab="editor" class="secondary">Emitir</button><button data-tab="history" class="secondary">Historial</button><button data-tab="audit" class="secondary">Auditoría</button></nav></div>
+<section id="editor" class="columns"><div class="card"><h2>Datos del documento</h2><form id="document-form">
+<label>Tipo<select name="kind"><option value="certificado">Certificado</option><option value="evolucion">Evolución clínica</option><option value="epicrisis">Epicrisis</option></select></label>
+<div class="patient-search"><label>Buscar en Medplum<input id="patient-query" maxlength="100" placeholder="Nombre o RUT" autocomplete="off"></label><button id="search" type="button" class="secondary">Buscar</button></div><div id="patients" aria-live="polite"></div>
+<label>Paciente<input name="patient" required maxlength="180" autocomplete="off"></label><div class="two"><label>RUT<input name="rut" required maxlength="16" placeholder="12.345.678-5" autocomplete="off"></label><label>Fecha del documento<input name="date" type="date" required></label></div>
+<label>Contenido<textarea name="content" rows="11" required maxlength="30000" placeholder="Escribe el contenido del documento…"></textarea></label>
+<label>Diagnóstico <span class="muted">(opcional)</span><textarea name="diagnosis" rows="2" maxlength="1000"></textarea></label>
+<p class="footnote">Revisa los datos antes de emitir. Una vez firmado, el PDF se conserva sin modificaciones. Puedes revocarlo desde el historial.</p><button type="submit">Emitir y firmar PDF</button></form></div>
+<aside><div class="card note"><div class="eyebrow">ANTES DE EMITIR</div><h2>Una copia íntegra.</h2><p>El documento incorporará tu firma digital y un código QR para consultar su vigencia.</p><p>La verificación pública solo muestra el hash, la fecha de emisión y el estado.</p><hr><p class="muted">Puedes ingresar los datos a mano aunque Medplum no esté disponible.</p><p class="footnote">La firma con certificado propio puede aparecer como no confiable en lectores que no reconozcan tu certificado.</p></div></aside></section>
+<section id="history" class="card" hidden><h2>Documentos emitidos</h2><p class="muted">Las descargas se registran. Revocar conserva el original y actualiza su estado público.</p><button id="refresh" class="secondary">Actualizar historial</button><div id="document-list"></div></section>
+<section id="audit" class="card" hidden><h2>Registro de auditoría</h2><p class="muted">Últimos 1.000 eventos. Sin contenido clínico.</p><div id="audit-list"></div></section>
+</div></main><footer>Certplum · Documentación cifrada en reposo</footer></body></html>

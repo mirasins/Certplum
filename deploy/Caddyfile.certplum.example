@@ -1,0 +1,14 @@
+# Archivo NUEVO propuesto. No añadir imports al Caddyfile existente sin aprobación.
+certificados.example.cl {
+    request_body {
+        max_size 256KB
+    }
+    # Sin access log.
+    reverse_proxy 127.0.0.1:18765 {
+        header_up Host {host}
+        header_up X-Forwarded-Proto https
+        header_up -X-Forwarded-For
+        header_up -Forwarded
+        flush_interval -1
+    }
+}

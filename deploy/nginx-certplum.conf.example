@@ -1,0 +1,22 @@
+# Sitio NUEVO propuesto. No sustituir ningún sitio existente de Medplum.
+server {
+    listen 443 ssl;
+    server_name certificados.example.cl;
+    ssl_certificate /RUTA/AL/CERTIFICADO/fullchain.pem;
+    ssl_certificate_key /RUTA/A/LA/CLAVE/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    access_log off;
+    error_log /var/log/nginx/certplum-error.log crit;
+    client_max_body_size 256k;
+    location / {
+        proxy_pass http://127.0.0.1:18765;
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-For "";
+        proxy_set_header Forwarded "";
+        proxy_read_timeout 45s;
+        proxy_buffering off;
+        proxy_request_buffering off;
+    }
+}

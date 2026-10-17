@@ -1,0 +1,65 @@
+name: certplum
+arch: ${GOARCH}
+platform: linux
+version: ${CERTPLUM_VERSION}
+section: utils
+priority: optional
+maintainer: Certplum contributors
+description: |
+  Independent clinical PDF documents with optional read-only Medplum integration.
+  Single-user Go application with encrypted storage, TOTP, PDF/A-2b and local
+  PAdES signing. Requires explicit configuration and setup before use.
+homepage: https://github.com/mirasins/Certplum
+license: MIT
+contents:
+  - src: build/linux_${GOARCH}/certplum
+    dst: /usr/bin/certplum
+    file_info:
+      mode: 0755
+  - src: deploy/certplum.service
+    dst: /usr/lib/systemd/system/certplum.service
+    file_info:
+      mode: 0644
+  - src: configs/config.example.json
+    dst: /usr/share/certplum/config.example.json
+    file_info:
+      mode: 0644
+  - src: deploy/nginx-certplum.conf.example
+    dst: /usr/share/certplum/nginx-certplum.conf.example
+    file_info:
+      mode: 0644
+  - src: deploy/Caddyfile.certplum.example
+    dst: /usr/share/certplum/Caddyfile.certplum.example
+    file_info:
+      mode: 0644
+  - src: README.md
+    dst: /usr/share/doc/certplum/README.md
+    file_info:
+      mode: 0644
+  - src: docs/INSTALL.md
+    dst: /usr/share/doc/certplum/INSTALL.md
+    file_info:
+      mode: 0644
+  - src: LICENSE
+    dst: /usr/share/doc/certplum/copyright
+    file_info:
+      mode: 0644
+  - src: THIRD_PARTY_NOTICES.md
+    dst: /usr/share/doc/certplum/THIRD_PARTY_NOTICES.md
+    file_info:
+      mode: 0644
+  - src: THIRD_PARTY_LICENSES.txt
+    dst: /usr/share/doc/certplum/THIRD_PARTY_LICENSES.txt
+    file_info:
+      mode: 0644
+  - src: internal/pdf/assets/OFL.txt
+    dst: /usr/share/doc/certplum/NotoSans-OFL.txt
+    file_info:
+      mode: 0644
+  - src: internal/pdf/assets/NOTICE.md
+    dst: /usr/share/doc/certplum/ASSET-NOTICES.md
+    file_info:
+      mode: 0644
+# Deliberately no preinst/postinst/prerm/postrm, no triggers or dependencies.
+# Installing copies only package-owned files. No user, config, DB or service
+# is created/started, and no proxy, firewall or Medplum file is modified.

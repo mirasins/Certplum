@@ -184,4 +184,3 @@ de uso clínico. El stub de prestador falla explícitamente.
 No subir datos de pacientes, certificados, claves, bases, respaldos o datos
 profesionales reales. Las identidades del ejemplo y las pruebas son ficticias.
 Los componentes y activos de terceros conservan sus licencias originales.
-
