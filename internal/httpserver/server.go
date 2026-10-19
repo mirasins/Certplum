@@ -124,7 +124,7 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 	path := r.URL.Path
-	if r.Method == http.MethodGet && (path == "/" || path == "/app.js" || path == "/style.css" || path == "/verify.js" || strings.HasPrefix(path, "/v/")) {
+	if r.Method == http.MethodGet && (path == "/" || path == "/app.js" || path == "/style.css" || path == "/verify.js" || path == "/certplum-logo.png" || path == "/certplum-icon.png" || path == "/favicon.png" || path == "/apple-touch-icon.png" || strings.HasPrefix(path, "/v/")) {
 		name := strings.TrimPrefix(path, "/")
 		if path == "/" {
 			name = "index.html"
@@ -147,6 +147,9 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		if strings.HasSuffix(name, ".css") {
 			ext = ".css"
+		}
+		if strings.HasSuffix(name, ".png") {
+			ext = ".png"
 		}
 		w.Header().Set("Content-Type", mime.TypeByExtension(ext))
 		_, _ = w.Write(b)
